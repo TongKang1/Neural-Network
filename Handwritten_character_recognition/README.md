@@ -1,24 +1,40 @@
-# Generate handwritten numbers from 1 to 9;
+# 文件运行顺序
 
-For more details, pls visit my blog (in chinese): https://www.cnblogs.com/AdaminXie/p/8379749.html
+#数据预处理
 
-Functions introductions:
-
-mkdir_for_imgs()
+Step1:随机生成训练神经网络所需的图片
     
-    新建9个文件夹 Num_1-Num_9，分别用于之后存放数字1-9图片;
-  
-del_imgs()
+    运行generate_imgs.py
+    图片保存在data_pngs文件夹下（由于文件数目太多，已压缩打包）
     
-    删除子文件夹 Num_1-9 中的所有图片;
+Step2:读取全部图片与标签，生成训练用的标准数据集（.csv）
 
-generate_single()
+    运行png_read.py
+    在data_sheet目录下，会生成对应的文件，以便网络读取
     
-    生成单张手写体随机数图片;
-   
-generate_1to9(n):
-   
-    生成 n 次手写体数字 1-9，并存入指定文件夹 Num_1-Num_9;
+Step3:生成作业需要的字符图片，并加上不同程度的噪音
+    
+    运行add_noise_fig.py
+    测试的图片保存在myName文件夹下
+    
+#网络训练
 
+Step4:选取对应的网络训练
+    
+    选取net1.py 、net1MSE.py或net2.py其中的一个，依次运行
+    （激活函数可在源码中修改）
+    net1.py为损失度函数为交叉熵函数的BP网络
+    net1MSE.py为损失度函数为平方和函数的BP网络
+    net2.py为CNN网络(基于LeNet-5)
+    运行过程中的准确率的变化过程会被保存到data_sheet文件夹下，网络参数会被保存在对应的.pkl文件中
+    
+    
+#数据测试
 
-Thanks for your support.
+Step5:作业要求的测试
+    
+    依次运行runNet1.py 、runNet1MSE.py和runNet2.py，测试训练好的模型
+    
+    运行drawRate.py可画出6个网络的准确率对比（可选）
+    
+    
