@@ -5,16 +5,19 @@
 Step1:随机生成训练神经网络所需的图片
     
     运行generate_imgs.py
+    
     图片保存在data_pngs文件夹下（由于文件数目太多，已压缩打包）
     
 Step2:读取全部图片与标签，生成训练用的标准数据集（.csv）
 
     运行png_read.py
+    
     在data_sheet目录下，会生成对应的文件，以便网络读取
     
 Step3:生成作业需要的字符图片，并加上不同程度的噪音
     
     运行add_noise_fig.py
+    
     测试的图片保存在myName文件夹下
     
 #网络训练
